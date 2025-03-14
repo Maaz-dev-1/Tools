@@ -3,113 +3,128 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ToolForge | Ultimate Digital Toolkit</title>
+    <title>CyberTools | Next-Gen File Utilities</title>
     <style>
         :root {
-            --primary: #7f5af0;
-            --secondary: #2cb67d;
-            --accent: #e94584;
-            --dark: #16161a;
-            --light: #fffffe;
+            --neon-pink: #ff00ff;
+            --cyber-teal: #00f7ff;
+            --matrix-green: #0f0;
+            --dark-bg: #0a0a0f;
+            --grid-line: rgba(255,255,255,0.05);
         }
 
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Space Grotesk', sans-serif;
+            font-family: 'Oxanium', cursive;
         }
 
         body {
-            background: var(--dark);
-            color: var(--light);
+            background: var(--dark-bg);
+            color: white;
             min-height: 100vh;
             overflow-x: hidden;
         }
 
-        /* Holographic Header */
-        .hero {
-            position: relative;
-            padding: 4rem 2rem;
+        /* Cyber Grid Background */
+        .cyber-grid {
+            position: fixed;
+            width: 100vw;
+            height: 100vh;
+            background-image: 
+                linear-gradient(var(--grid-line) 1px, transparent 1px),
+                linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
+            background-size: 30px 30px;
+            z-index: -1;
+        }
+
+        /* Header Styles */
+        .header {
             text-align: center;
-            background: linear-gradient(45deg, 
-                rgba(127, 90, 240, 0.1), 
-                rgba(44, 182, 125, 0.05));
-            border-bottom: 2px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .hero h1 {
-            font-size: 4rem;
-            background: linear-gradient(45deg, var(--primary), var(--secondary));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            margin-bottom: 1rem;
-        }
-
-        /* Floating Grid System */
-        .tool-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            padding: 3rem 2rem;
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-
-        .tool-card {
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(10px);
-            border-radius: 1.5rem;
-            padding: 2rem;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            transition: all 0.3s ease;
+            padding: 4rem 2rem;
             position: relative;
             overflow: hidden;
         }
 
+        .glitch {
+            font-size: 4rem;
+            color: var(--neon-pink);
+            text-shadow: 0 0 10px var(--neon-pink);
+            position: relative;
+            animation: glitch 2s infinite;
+        }
+
+        @keyframes glitch {
+            0% { transform: translate(0) }
+            20% { transform: translate(-2px, 2px) }
+            40% { transform: translate(-2px, -2px) }
+            60% { transform: translate(2px, 2px) }
+            80% { transform: translate(2px, -2px) }
+            100% { transform: translate(0) }
+        }
+
+        /* Tool Grid */
+        .tool-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            padding: 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        /* Tool Card Design */
+        .tool-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--neon-pink);
+            border-radius: 10px;
+            padding: 2rem;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            color: white;
+        }
+
         .tool-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(127, 90, 240, 0.2);
+            transform: translateY(-5px);
+            box-shadow: 0 0 30px var(--neon-pink);
         }
 
         .tool-card::before {
             content: '';
             position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
             background: linear-gradient(
-                45deg,
+                90deg,
                 transparent,
-                rgba(127, 90, 240, 0.2),
+                rgba(255,255,255,0.1),
                 transparent
             );
-            animation: float 6s infinite linear;
+            transition: 0.5s;
         }
 
-        @keyframes float {
-            100% { transform: rotate(360deg); }
-        }
-
-        .card-content {
-            position: relative;
-            z-index: 1;
+        .tool-card:hover::before {
+            left: 100%;
         }
 
         .tool-icon {
-            width: 80px;
-            height: 80px;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 1rem;
-            margin-bottom: 1.5rem;
+            width: 60px;
+            height: 60px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 8px;
+            margin-bottom: 1rem;
             display: grid;
             place-items: center;
         }
 
         .tool-icon img {
-            width: 40px;
-            filter: drop-shadow(0 0 10px var(--primary));
+            width: 30px;
+            filter: drop-shadow(0 0 5px var(--cyber-teal);
         }
 
         /* Category Navigation */
@@ -121,239 +136,103 @@
             flex-wrap: wrap;
         }
 
-        .category-btn {
-            background: rgba(255, 255, 255, 0.05);
-            border: none;
+        .nav-btn {
+            background: transparent;
+            border: 1px solid var(--cyber-teal);
+            color: var(--cyber-teal);
             padding: 1rem 2rem;
-            border-radius: 2rem;
-            color: var(--light);
+            border-radius: 5px;
             cursor: pointer;
             transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 2px;
         }
 
-        .category-btn.active {
-            background: var(--primary);
-            box-shadow: 0 0 20px rgba(127, 90, 240, 0.3);
-        }
-
-        /* Search Bar */
-        .search-bar {
-            max-width: 600px;
-            margin: 2rem auto;
-            position: relative;
-        }
-
-        .search-input {
-            width: 100%;
-            padding: 1.5rem;
-            border: none;
-            border-radius: 3rem;
-            background: rgba(255, 255, 255, 0.05);
-            color: var(--light);
-            font-size: 1.1rem;
-            padding-left: 4rem;
-        }
-
-        .search-icon {
-            position: absolute;
-            left: 1.5rem;
-            top: 50%;
-            transform: translateY(-50%);
-            color: var(--primary);
+        .nav-btn:hover {
+            background: var(--cyber-teal);
+            color: var(--dark-bg);
         }
 
         /* Responsive Design */
         @media (max-width: 768px) {
-            .hero h1 {
+            .glitch {
                 font-size: 2.5rem;
             }
             
             .tool-grid {
                 grid-template-columns: 1fr;
-                padding: 2rem 1rem;
             }
         }
     </style>
 </head>
 <body>
-    <header class="hero">
-        <h1>ToolForge</h1>
-        <p>Your Ultimate Digital Workshop</p>
-        
-        <div class="search-bar">
-            <input type="text" class="search-input" placeholder="Find your tool...">
-            <svg class="search-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <circle cx="11" cy="11" r="8"/>
-                <path d="M21 21l-4.35-4.35"/>
-            </svg>
-        </div>
+    <div class="cyber-grid"></div>
 
+    <header class="header">
+        <h1 class="glitch">CYBER_TOOLS</h1>
+        <p class="tagline">Your digital Swiss Army knife</p>
+        
         <nav class="category-nav">
-            <button class="category-btn active">All Tools</button>
-            <button class="category-btn">Image Tools</button>
-            <button class="category-btn">PDF Tools</button>
-            <button class="category-btn">Converters</button>
-            <button class="category-btn">Optimizers</button>
+            <button class="nav-btn">All Tools</button>
+            <button class="nav-btn">Image Tools</button>
+            <button class="nav-btn">PDF Tools</button>
+            <button class="nav-btn">Converters</button>
         </nav>
     </header>
 
     <main class="tool-grid">
         <!-- Image Tools -->
-       <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tool Card Component</title>
-    <style>
-        .tool-link {
-            text-decoration: none;
-            color: inherit;
-            display: block;
-            transition: transform 0.3s ease;
-            max-width: 300px;
-            margin: 20px;
-        }
-
-        .tool-link:hover .tool-card {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.15);
-        }
-
-        .tool-card {
-            transition: all 0.3s ease;
-            background: #ffffff;
-            border-radius: 12px;
-            padding: 20px;
-            position: relative;
-            overflow: hidden;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-        }
-
-        .tool-card::before {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: 4px;
-            background: linear-gradient(90deg, #7F5FFF 0%, #4ECDC4 100%);
-            transform: scaleX(0);
-            transition: transform 0.3s ease;
-        }
-
-        .tool-link:hover .tool-card::before {
-            transform: scaleX(1);
-        }
-
-        .card-content {
-            text-align: center;
-        }
-
-        .tool-icon img {
-            width: 60px;
-            height: 60px;
-            margin-bottom: 15px;
-        }
-
-        h3 {
-            margin: 0 0 10px 0;
-            color: #2D2D44;
-            font-size: 1.4rem;
-        }
-
-        p {
-            margin: 0;
-            color: #6B7280;
-            font-size: 0.9rem;
-        }
-
-        /* Container styling for demo purposes */
-        body {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            background-color: #F8FAFC;
-            margin: 0;
-            font-family: 'Segoe UI', sans-serif;
-        }
-    </style>
-</head>
-<body>
-    <a href="/tools/img-compress.html" class="tool-link" target="_blank" rel="noopener noreferrer">
-        <div class="tool-card">
-            <div class="card-content">
-                <div class="tool-icon">
-                    <img src="image-icon.svg" alt="Image Tools">
-                </div>
-                <h3>Image Compressor</h3>
-                <p>Reduce image size without quality loss</p>
+        <a href="/tools/img-compress.html" class="tool-card">
+            <div class="tool-icon">
+                <img src="compress-icon.svg" alt="Compression">
             </div>
-        </div>
-    </a>
+            <h3>Image Compressor</h3>
+            <p>Reduce file size without quality loss</p>
+            <div class="cyber-border"></div>
+        </a>
 
-
-
-        <div class="tool-card">
-            <div class="card-content">
-                <div class="tool-icon">
-                    <img src="convert-icon.svg" alt="Converter">
-                </div>
-                <h3>Format Converter</h3>
-                <p>Convert between JPG, PNG, WEBP</p>
+        <a href="/tools/img-compress.html" class="tool-card">
+            <div class="tool-icon">
+                <img src="convert-icon.svg" alt="Conversion">
             </div>
-        </div>
+            <h3>Format Converter</h3>
+            <p>Convert between JPG, PNG, WEBP</p>
+        </a>
 
         <!-- PDF Tools -->
-        <div class="tool-card">
-            <div class="card-content">
-                <div class="tool-icon">
-                    <img src="pdf-icon.svg" alt="PDF Tools">
-                </div>
-                <h3>PDF Compressor</h3>
-                <p>Optimize PDF file sizes</p>
+        <a href="/pdf-merger" class="tool-card">
+            <div class="tool-icon">
+                <img src="merge-icon.svg" alt="Merge">
             </div>
-        </div>
+            <h3>PDF Merger</h3>
+            <p>Combine multiple PDF files</p>
+        </a>
 
-        <div class="tool-card">
-            <div class="card-content">
-                <div class="tool-icon">
-                    <img src="merge-icon.svg" alt="PDF Merge">
-                </div>
-                <h3>PDF Merger</h3>
-                <p>Combine multiple PDFs</p>
+        <a href="/pdf-compressor" class="tool-card">
+            <div class="tool-icon">
+                <img src="pdf-icon.svg" alt="PDF">
             </div>
-        </div>
+            <h3>PDF Compressor</h3>
+            <p>Reduce PDF file size</p>
+        </a>
 
-        <!-- More tool cards... -->
+        <!-- Add more tool cards with hyperlinks -->
     </main>
 
     <script>
-        // Add interactive elements
-        const categoryBtns = document.querySelectorAll('.category-btn');
-        categoryBtns.forEach(btn => {
-            btn.addEventListener('click', () => {
-                categoryBtns.forEach(b => b.classList.remove('active'));
-                btn.classList.add('active');
-            });
+        // Add dynamic background effect
+        document.addEventListener('mousemove', (e) => {
+            document.documentElement.style.setProperty('--x', e.clientX + 'px');
+            document.documentElement.style.setProperty('--y', e.clientY + 'px');
         });
 
-        // Add hover effect to tool cards
-        document.querySelectorAll('.tool-card').forEach(card => {
-            card.addEventListener('mousemove', (e) => {
-                const rect = card.getBoundingClientRect();
-                const x = e.clientX - rect.left;
-                const y = e.clientY - rect.top;
-                card.style.transform = `
-                    perspective(1000px)
-                    rotateX(${(y - rect.height/2) / 10}deg)
-                    rotateY(${-(x - rect.width/2) / 10}deg)
-                `;
-            });
-
-            card.addEventListener('mouseleave', () => {
-                card.style.transform = 'none';
+        // Add category filtering
+        const navBtns = document.querySelectorAll('.nav-btn');
+        navBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                navBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                // Add filter logic here
             });
         });
     </script>
