@@ -199,17 +199,100 @@
 
     <main class="tool-grid">
         <!-- Image Tools -->
-        <a href="/tools/img-compress.html">
-    <div class="tool-card">
-        <div class="card-content">
-            <div class="tool-icon">
-                <img src="image-icon.svg" alt="Image Tools">
+       <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tool Card Component</title>
+    <style>
+        .tool-link {
+            text-decoration: none;
+            color: inherit;
+            display: block;
+            transition: transform 0.3s ease;
+            max-width: 300px;
+            margin: 20px;
+        }
+
+        .tool-link:hover .tool-card {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+        }
+
+        .tool-card {
+            transition: all 0.3s ease;
+            background: #ffffff;
+            border-radius: 12px;
+            padding: 20px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        .tool-card::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, #7F5FFF 0%, #4ECDC4 100%);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .tool-link:hover .tool-card::before {
+            transform: scaleX(1);
+        }
+
+        .card-content {
+            text-align: center;
+        }
+
+        .tool-icon img {
+            width: 60px;
+            height: 60px;
+            margin-bottom: 15px;
+        }
+
+        h3 {
+            margin: 0 0 10px 0;
+            color: #2D2D44;
+            font-size: 1.4rem;
+        }
+
+        p {
+            margin: 0;
+            color: #6B7280;
+            font-size: 0.9rem;
+        }
+
+        /* Container styling for demo purposes */
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #F8FAFC;
+            margin: 0;
+            font-family: 'Segoe UI', sans-serif;
+        }
+    </style>
+</head>
+<body>
+    <a href="/tools/img-compress.html" class="tool-link" target="_blank" rel="noopener noreferrer">
+        <div class="tool-card">
+            <div class="card-content">
+                <div class="tool-icon">
+                    <img src="image-icon.svg" alt="Image Tools">
+                </div>
+                <h3>Image Compressor</h3>
+                <p>Reduce image size without quality loss</p>
             </div>
-            <h3>Image Compressor</h3>
-            <p>Reduce image size without quality loss</p>
         </div>
-    </div>
-</a>
+    </a>
+
 
 
         <div class="tool-card">
